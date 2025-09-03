@@ -12,7 +12,7 @@ jobs:
       packages: write
     env:
       IMAGE_NAME: mirakc
-      RECISDB_VERSION: 1.2.3
+      RECISDB_RS_VERSION: 1.2.3
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -39,4 +39,4 @@ jobs:
           tags: |
             ghcr.io/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}:latest
           build-args: |
-            RECISDB_VERSION=${{ env.RECISDB_VERSION }}
+            RECISDB_RS_VERSION=${{ env.RECISDB_RS_VERSION }}
