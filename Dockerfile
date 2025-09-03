@@ -3,6 +3,10 @@ FROM mirakc/mirakc:debian
 # Build envirionment
 RUN apt update && apt install -y --no-install-recommends \
     wget \
+    git \
+    autoconf \
+    automake \
+    curl \
     && rm -rf /var/lib/apt/lists/*
 
 # TARGETPLATFORM
