@@ -1,4 +1,4 @@
-FROM mirakc/debian
+FROM mirakc/mirakc:debian
 
 # Build envirionment
 RUN apt update && apt install -y --no-install-recommends \
