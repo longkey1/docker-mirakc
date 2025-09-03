@@ -41,3 +41,4 @@ jobs:
             ghcr.io/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}:latest
           build-args: |
             RECISDB_RS_VERSION=${{ env.RECISDB_RS_VERSION }}
+            MIRAVIEW_VERSION=${{ env.MIRAVIEW_VERSION }}
