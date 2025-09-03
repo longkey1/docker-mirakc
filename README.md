@@ -1,2 +1,2 @@
 # docker-mirakc
-mirakc + recisdb
+mirakc + miraview + recisdb

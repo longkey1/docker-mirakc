@@ -3,6 +3,7 @@ FROM mirakc/mirakc:debian
 # Build envirionment
 RUN apt update && apt install -y --no-install-recommends \
     wget \
+    curl \
     libpcsclite1 \
     && rm -rf /var/lib/apt/lists/*
 
@@ -22,6 +23,11 @@ RUN PLATFORM=$( \
 RUN apt-get install -y ./recisdb.deb
 RUN rm ./recisdb.deb
 RUN recisdb --version
+
+# Install miraview
+ARG MIRAVIEW_VERSION
+WORKDIR /var/html/miraview
+RUN curl -L https://github.com/maeda577/miraview/releases/download/${MIRAVIEW_VERSION}/build.tar.gz | tar -zxvf -
 
 # Install healthcheck script
 COPY healthcheck.sh /usr/local/bin/healthcheck.sh
