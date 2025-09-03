@@ -5,6 +5,9 @@ RUN apt update && apt install -y --no-install-recommends \
     wget \
     && rm -rf /var/lib/apt/lists/*
 
+# TARGETPLATFORM
+ARG TARGETPLATFORM
+
 # Install recisdb
 ARG RECISDB_RS_VERSION
 RUN PLATFORM=$( \
@@ -13,7 +16,6 @@ RUN PLATFORM=$( \
         linux/arm64 ) echo "arm64";; \
       esac \
     ) && \
-    echo "TARGETPLATFORM=${TARGETPLATFORM}, PLATFORM=${PLATFORM}" && \
     wget https://github.com/kazuki0824/recisdb-rs/releases/download/${RECISDB_RS_VERSION}/recisdb_${RECISDB_RS_VERSION}-1_${PLATFORM}.deb -O ./recisdb.deb
 RUN RUN apt-get install -y ./recisdb.deb
 RUN rm ./recisdb.deb
