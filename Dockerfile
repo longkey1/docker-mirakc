@@ -4,7 +4,9 @@ FROM mirakc/mirakc:debian
 RUN apt update && apt install -y --no-install-recommends \
     wget \
     curl \
+    pcscd \
     libpcsclite1 \
+    libpcsclite-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # TARGETPLATFORM
