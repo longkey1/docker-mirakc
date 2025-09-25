@@ -39,6 +39,9 @@ RUN chmod +x /usr/local/bin/healthcheck.sh
 
 WORKDIR /app
 
+# pcscdのpolkitを無効化
+RUN echo 'PCSCD_ARGS="--disable-polkit"' >> /etc/default/pcscd
+
 # entrypoint.shをコピーして実行権限付与
 COPY ./entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
