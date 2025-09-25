@@ -5,6 +5,7 @@ RUN apt update && apt install -y --no-install-recommends \
     wget \
     curl \
     pcscd \
+    pcsc-tools \
     libpcsclite1 \
     libpcsclite-dev \
     && rm -rf /var/lib/apt/lists/*
