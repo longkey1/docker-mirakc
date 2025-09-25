@@ -1,17 +1,7 @@
 #!/bin/bash
-# pcscdをバックグラウンドで起動
-if [ -x /usr/sbin/pcscd ]; then
-    echo "Starting pcscd..."
-    pcscd
-    sleep 2
 
-    # 起動確認
-    if pgrep pcscd > /dev/null; then
-        echo "pcscd is running"
-    else
-        echo "Warning: pcscd failed to start"
-    fi
-fi
+echo "Executing: /etc/init.d/pcscd start"
+/etc/init.d/pcscd start
 
-# 元のmirakc entrypointを実行
+echo "Starting mirakc with args: $@"
 exec /usr/local/bin/mirakc "$@"
