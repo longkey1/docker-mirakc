@@ -7,7 +7,6 @@ RUN apt update && apt install -y --no-install-recommends \
     pcscd \
     pcsc-tools \
     libpcsclite1 \
-    libpcsclite-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # TARGETPLATFORM
