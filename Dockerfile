@@ -7,7 +7,7 @@ RUN apt update && apt install -y --no-install-recommends \
     libpcsclite1 \
     pcscd \
     pcsc-tools \
-    procpsa \
+    procps \
     wget \
     && rm -rf /var/lib/apt/lists/*
 
