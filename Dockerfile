@@ -8,7 +8,6 @@ RUN apt update && apt install -y --no-install-recommends \
     pcscd \
     pcsc-tools \
     libpcsclite1 \
-    libpcsclite-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # TARGETPLATFORM
@@ -39,10 +38,10 @@ RUN chmod +x /usr/local/bin/healthcheck.sh
 
 WORKDIR /app
 
-# pcscdのpolkitを無効化
-RUN echo 'PCSCD_ARGS="--disable-polkit"' >> /etc/default/pcscd
+# Disable polkit authentication for pcscd
+RUN sed -i 's/^PCSCD_ARGS=""/PCSCD_ARGS="--disable-polkit"/' /etc/default/pcscd
 
-# entrypoint.shをコピーして実行権限付与
+# Add entrypoint script with executable permissions
 COPY ./entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
 
