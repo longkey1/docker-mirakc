@@ -2,12 +2,13 @@ FROM mirakc/mirakc:debian
 
 # Build envirionment
 RUN apt update && apt install -y --no-install-recommends \
-    wget \
-    curl \
     ca-certificates \
+    curl \
+    libpcsclite1 \
     pcscd \
     pcsc-tools \
-    libpcsclite1 \
+    procpsa \
+    wget \
     && rm -rf /var/lib/apt/lists/*
 
 # TARGETPLATFORM
