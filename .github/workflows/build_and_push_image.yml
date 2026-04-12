@@ -12,11 +12,18 @@ jobs:
       packages: write
     env:
       IMAGE_NAME: mirakc
-      RECISDB_RS_VERSION: 1.2.3
-      MIRAVIEW_VERSION: v0.1.2
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Read mirakc version
+        run: echo "MIRAKC_VERSION=$(cat .mirakc-version | tr -d '[:space:]')" >> $GITHUB_ENV
+
+      - name: Read recisdb-rs version
+        run: echo "RECISDB_RS_VERSION=$(cat .recisdb-rs-version | tr -d '[:space:]')" >> $GITHUB_ENV
+
+      - name: Read miraview version
+        run: echo "MIRAVIEW_VERSION=$(cat .miraview-version | tr -d '[:space:]')" >> $GITHUB_ENV
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
@@ -39,6 +46,8 @@ jobs:
           push: true
           tags: |
             ghcr.io/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}:latest
+            ghcr.io/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}:${{ env.MIRAKC_VERSION }}
           build-args: |
+            MIRAKC_VERSION=${{ env.MIRAKC_VERSION }}
             RECISDB_RS_VERSION=${{ env.RECISDB_RS_VERSION }}
             MIRAVIEW_VERSION=${{ env.MIRAVIEW_VERSION }}

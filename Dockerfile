@@ -1,4 +1,5 @@
-FROM mirakc/mirakc:debian
+ARG MIRAKC_VERSION=3.4.63
+FROM mirakc/mirakc:${MIRAKC_VERSION}
 
 # Build envirionment
 RUN apt update && apt install -y --no-install-recommends \
