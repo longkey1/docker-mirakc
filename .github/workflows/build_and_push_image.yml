@@ -1,10 +1,9 @@
 name: build_and_publish_image
-run-name: ${{ github.ref_name }}
+run-name: ${{ github.event.release.tag_name }}
 
 on:
-  push:
-    tags:
-      - "*.*.*-*"
+  release:
+    types: [published]
 
 jobs:
   build_and_publish_image:
@@ -51,7 +50,7 @@ jobs:
           tags: |
             ghcr.io/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}:latest
             ghcr.io/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}:${{ env.MIRAKC_VERSION }}-latest
-            ghcr.io/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}:${{ github.ref_name }}
+            ghcr.io/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}:${{ github.event.release.tag_name }}
           build-args: |
             MIRAKC_VERSION=${{ env.MIRAKC_VERSION }}
             RECISDB_RS_VERSION=${{ env.RECISDB_RS_VERSION }}
