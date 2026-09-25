@@ -1,12 +1,11 @@
 .DEFAULT_GOAL := help
 
 MIRAKC_VERSION := $(shell cat .mirakc-version | tr -d '[:space:]')
+RECISDB_RS_VERSION := $(shell cat .recisdb-rs-version | tr -d '[:space:]')
+MIRAVIEW_VERSION := $(shell cat .miraview-version | tr -d '[:space:]')
 
-# Get the latest tag matching <mirakc-version>-<number> pattern
-LATEST_TAG     := $(shell git tag --sort=-v:refname | grep -E "^$(MIRAKC_VERSION)-[0-9]+$$" | head -n1)
-LATEST_BUILD   := $(shell echo "$(LATEST_TAG)" | sed 's/.*-//')
-NEXT_BUILD     := $(shell if [ -n "$(LATEST_BUILD)" ]; then expr $(LATEST_BUILD) + 1; else echo 1; fi)
-NEXT_TAG       := $(MIRAKC_VERSION)-$(NEXT_BUILD)
+# Combine component versions without their optional leading v.
+NEXT_TAG := $(patsubst v%,%,$(MIRAKC_VERSION))-$(patsubst v%,%,$(RECISDB_RS_VERSION))-$(patsubst v%,%,$(MIRAVIEW_VERSION))
 
 dryrun ?= true
 tag    ?=
@@ -14,7 +13,8 @@ tag    ?=
 .PHONY: release
 release: ## Release a new build. Usage: make release [dryrun=false]
 	@echo "mirakc version : $(MIRAKC_VERSION)"
-	@echo "Current tag    : $(if $(LATEST_TAG),$(LATEST_TAG),(none))"
+	@echo "recisdb version: $(RECISDB_RS_VERSION)"
+	@echo "miraview version: $(MIRAVIEW_VERSION)"
 	@echo "Next tag       : $(NEXT_TAG)"
 	@if [ "$(dryrun)" = "false" ]; then \
 		echo "Pushing to origin/master..."; \

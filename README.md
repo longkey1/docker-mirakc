@@ -20,7 +20,7 @@ ghcr.io/longkey1/mirakc:<mirakc-version>-latest
 ghcr.io/longkey1/mirakc:<tag>
 ```
 
-`<tag>` はリリースタグ（例: `3.4.63-1.2.4-v0.1.2`）です。
+`<tag>` は3つのコンポーネントのバージョンを並べたリリースタグ（例: `3.4.63-1.2.4-0.1.2`）です。各バージョンの先頭の `v` は除去します。
 
 対応プラットフォーム: `linux/amd64`, `linux/arm64`
 
@@ -58,6 +58,8 @@ services:
 
 ## ビルド
 
-`*.*.*-*` パターンのタグプッシュをトリガーに、GitHub Actions で自動的にビルドして GHCR へ公開します。
+GitHub Release の公開をトリガーに、GitHub Actions で自動的にビルドして GHCR へ公開します。
 
-タグのフォーマット例: `3.4.63-1.2.4-v0.1.2`（`<mirakc>-<recisdb-rs>-<miraview>`）
+タグのフォーマット例: `3.4.63-1.2.4-0.1.2`（`<mirakc>-<recisdb-rs>-<miraview>`、各バージョンの先頭の `v` を除去）
+
+`make release` で生成されるタグを確認し、`make release dryrun=false` でタグのプッシュと GitHub Release の作成を実行します。
