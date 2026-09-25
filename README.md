@@ -6,7 +6,7 @@
 
 | コンポーネント | バージョン | 説明 |
 |--------------|----------|------|
-| [mirakc](https://github.com/mirakc/mirakc) | 3.4.85 | Mirakurun 互換チューナーサーバー |
+| [mirakc](https://github.com/mirakc/mirakc) | 3.4.86 | Mirakurun 互換チューナーサーバー |
 | [recisdb-rs](https://github.com/kazuki0824/recisdb-rs) | 1.2.4 | B-CAS カードリーダー / TS ストリームデコーダー |
 | [miraview](https://github.com/maeda577/miraview) | v0.1.2 | mirakc 向け Web UI |
 
@@ -20,7 +20,7 @@ ghcr.io/longkey1/mirakc:<mirakc-version>-latest
 ghcr.io/longkey1/mirakc:<tag>
 ```
 
-`<tag>` は3つのコンポーネントのバージョンを並べたリリースタグ（例: `3.4.85-1.2.4-0.1.2`）です。各バージョンの先頭の `v` は除去します。
+`<tag>` は3つのコンポーネントのバージョンを並べたリリースタグ（例: `3.4.86-1.2.4-0.1.2`）です。各バージョンの先頭の `v` は除去します。
 
 対応プラットフォーム: `linux/amd64`, `linux/arm64`
 
@@ -60,6 +60,6 @@ services:
 
 GitHub Release の公開をトリガーに、GitHub Actions で自動的にビルドして GHCR へ公開します。
 
-タグのフォーマット例: `3.4.85-1.2.4-0.1.2`（`<mirakc>-<recisdb-rs>-<miraview>`、各バージョンの先頭の `v` を除去）
+タグのフォーマット例: `3.4.86-1.2.4-0.1.2`（`<mirakc>-<recisdb-rs>-<miraview>`、各バージョンの先頭の `v` を除去）
 
 `make release` で生成されるタグを確認し、`make release dryrun=false` でタグのプッシュと GitHub Release の作成を実行します。
